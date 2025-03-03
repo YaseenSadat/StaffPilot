@@ -2,6 +2,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { EmployeeEditComponent } from '../employee-edit/employee-edit.component';
+
 
 // Import Angular Material modules via your shared module
 import { MaterialModule } from '../../shared/material.module';
@@ -36,7 +39,11 @@ export class EmployeeListComponent implements OnInit {
     salary: 0
   };
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(
+    private employeeService: EmployeeService,
+    private dialog: MatDialog
+  ) {}
+  
 
   ngOnInit(): void {
     this.loadEmployees();
@@ -85,4 +92,27 @@ export class EmployeeListComponent implements OnInit {
       }
     });
   }
+  
+  editEmployee(employee: Employee): void {
+    const dialogRef = this.dialog.open(EmployeeEditComponent, {
+      width: '400px',
+      data: employee
+    });
+  
+    dialogRef.afterClosed().subscribe((result: Employee | null) => {
+      if (result) {
+        // Call your update method (assuming updateEmployee is implemented in your service)
+        this.employeeService.updateEmployee(result.id!, result).subscribe({
+          next: () => {
+            this.loadEmployees(); // Refresh the list after update
+          },
+          error: err => {
+            console.error('Error updating employee:', err);
+          }
+        });
+      }
+    });
+  }
+  
 }
+
