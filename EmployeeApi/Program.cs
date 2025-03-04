@@ -1,14 +1,18 @@
+using DotNetEnv;
 using EmployeeApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
+// Load environment variables from .env file
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Retrieve the connection string from appsettings.json
+// Now, when you retrieve the connection string from appsettings.json, 
+// the placeholder ${DB_PASSWORD} will be replaced by the value from the environment variable.
 string connectionString = builder.Configuration.GetConnectionString("EmployeeDbConnection")!;
 
-// Register the EmployeeDbContext with SQL Server
+// ... rest of your code ...
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular",
@@ -20,16 +24,14 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<EmployeeDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Register controllers and Swagger/OpenAPI services
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Enable CORS using the policy defined above
 app.UseCors("AllowAngular");
-// Configure the HTTP request pipeline for development
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -37,8 +39,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-// Map controller endpoints (this will include your Employee endpoints)
 app.MapControllers();
-
 app.Run();

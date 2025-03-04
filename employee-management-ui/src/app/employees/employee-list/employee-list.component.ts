@@ -4,16 +4,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeEditComponent } from '../employee-edit/employee-edit.component';
-
-
-// Import Angular Material modules via your shared module
-import { MaterialModule } from '../../shared/material.module';
-
-// Also import additional Material modules if needed
+import { MaterialModule } from '../../shared/material.module'; // Shared module with Material components
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
 import { Employee, EmployeeService } from '../../services/employee.service';
 
 @Component({
@@ -26,7 +20,6 @@ import { Employee, EmployeeService } from '../../services/employee.service';
 export class EmployeeListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'role', 'department', 'salary', 'actions'];
   dataSource = new MatTableDataSource<Employee>();
-
   filterValue: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -43,17 +36,16 @@ export class EmployeeListComponent implements OnInit {
     private employeeService: EmployeeService,
     private dialog: MatDialog
   ) {}
-  
 
   ngOnInit(): void {
     this.loadEmployees();
   }
 
+  // Load employees from the API and assign paginator and sort to the table data source.
   loadEmployees(): void {
     this.employeeService.getEmployees().subscribe({
       next: (data) => {
         this.dataSource.data = data;
-        // Assign paginator and sort after data is loaded.
         setTimeout(() => {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -65,14 +57,17 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
+  // Apply the filter to the table data source.
   applyFilter(): void {
     this.dataSource.filter = this.filterValue.trim().toLowerCase();
   }
 
+  // Add a new employee by calling the service.
   addEmployee(): void {
     this.employeeService.addEmployee(this.newEmployee).subscribe({
       next: () => {
         this.loadEmployees();
+        // Reset the newEmployee object for a fresh form.
         this.newEmployee = { name: '', role: '', department: '', salary: 0 };
       },
       error: (err) => {
@@ -81,6 +76,7 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
+  // Delete an employee by ID.
   deleteEmployee(id: number | undefined): void {
     if (!id) return;
     this.employeeService.deleteEmployee(id).subscribe({
@@ -92,20 +88,19 @@ export class EmployeeListComponent implements OnInit {
       }
     });
   }
-  
+
+  // Open the edit dialog, then update the employee if changes were made.
   editEmployee(employee: Employee): void {
     const dialogRef = this.dialog.open(EmployeeEditComponent, {
       width: '400px',
       data: employee
     });
-  
+
     dialogRef.afterClosed().subscribe((result: Employee | null) => {
       if (result) {
-        // Call your update method (assuming updateEmployee is implemented in your service)
+        // Call the update method from the service.
         this.employeeService.updateEmployee(result.id!, result).subscribe({
-          next: () => {
-            this.loadEmployees(); // Refresh the list after update
-          },
+          next: () => this.loadEmployees(),
           error: err => {
             console.error('Error updating employee:', err);
           }
@@ -113,6 +108,4 @@ export class EmployeeListComponent implements OnInit {
       }
     });
   }
-  
 }
-

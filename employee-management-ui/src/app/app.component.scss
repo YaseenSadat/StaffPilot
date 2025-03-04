@@ -1,0 +1,27 @@
+/* src/app/app.component.scss */
+.main-toolbar {
+    /* By default, Angular Material uses the "primary" color if you haven't set a custom theme. */
+    background-color: #1976d2; /* You can override the default color here if you prefer. */
+    color: #fff;               /* Ensure text is visible on a dark background. */
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    font-family: 'Montserrat', sans-serif;
+  
+    .logo {
+      height: 40px;
+      margin-right: 1rem;
+    }
+  
+    .toolbar-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
+  
+  .content-container {
+    padding: 2rem;
+    background: #f9f9f9;
+    min-height: calc(100vh - 64px); // Adjust if needed
+  }
+  

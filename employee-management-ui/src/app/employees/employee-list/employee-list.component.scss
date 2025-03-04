@@ -1,36 +1,51 @@
+/* src/app/employees/employee-list/employee-list.component.scss */
 
-// Define SASS variables for consistent theming
 $primary-color: #1976d2;
 $accent-color: #ff4081;
-$light-bg: #f5f5f5;
-$text-color: #424242;
+$background-light: #f5f5f5;
+$table-bg: #ffffff;
 
 .employee-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  background-color: $light-bg;
+  gap: 2rem;
+  padding: 1rem;
+  background-color: $background-light;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+}
 
-  .content {
-    padding: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
+.header-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  h2 {
+    margin: 0;
+    color: $primary-color;
+    font-size: 2rem;
+  }
+
+  .actions {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    justify-content: flex-end;
+    mat-form-field {
+      width: 300px;
+    }
   }
 }
 
-.controls {
-  display: flex;
-  justify-content: flex-end;
+mat-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600; // Use 600 for a semi-bold look; adjust if needed.
+  color: $primary-color; // Or any color of your choice.
 }
 
 .table-container {
-  background: white;
+  background-color: $table-bg;
   padding: 1rem;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   table {
     width: 100%;
@@ -41,22 +56,28 @@ $text-color: #424242;
   mat-card {
     padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
     mat-card-title {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       color: $primary-color;
       margin-bottom: 0.5rem;
     }
 
-    mat-form-field {
-      width: 100%;
-      margin-bottom: 1rem;
-    }
-
-    button {
-      display: block;
-      margin: 0 auto;
+    mat-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
   }
+
+  .form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}
+
+.full-width {
+  width: 100%;
 }

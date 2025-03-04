@@ -37,12 +37,14 @@
   }
 </style>
 
-<main>
-  <div class="header">
-    <h1>Employee Management System</h1>
-    <p>Manage your employees efficiently</p>
-  </div>
-  
-  <!-- Routed components will appear here -->
+<!-- src/app/app.component.html -->
+<mat-toolbar class="main-toolbar">
+  <!-- Logo on the left -->
+  <img src="assets/logo.png" alt="Logo" class="logo" />
+  <span class="toolbar-title">StaffPilot - Employee Management</span>
+</mat-toolbar>
+
+<div class="content-container">
   <router-outlet></router-outlet>
-</main>
+</div>
+
