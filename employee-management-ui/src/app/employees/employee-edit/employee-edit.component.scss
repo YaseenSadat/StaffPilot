@@ -1,8 +1,23 @@
-// src/app/employees/employee-edit/employee-edit.component.scss
+/*
+  employee-edit.component.scss
+
+  This stylesheet defines styles for the Employee Edit dialog component.
+  It ensures a consistent layout and enhances the appearance of the modal dialog.
+
+  Styles:
+  - `.full-width`: A utility class that makes an element take up the full width of its container.
+  - `mat-dialog-content`: Ensures that the dialog content does not overflow, maintaining a clean UI.
+
+  Dependencies:
+  - Angular Material (`mat-dialog-content`) for modal styling.
+*/
+
+/* Ensures elements span the full available width */
 .full-width {
-    width: 100%;
-  }
-  mat-dialog-content {
-    overflow: hidden;
-  }
-  
+  width: 100%;
+}
+
+/* Prevents content overflow within the dialog */
+mat-dialog-content {
+  overflow: hidden;
+}

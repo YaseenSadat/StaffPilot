@@ -1,8 +1,26 @@
-<!-- src/app/app.component.html -->
+<!--
+  app.component.html
+
+  This template serves as the main layout for the application.
+  It includes a toolbar with a logo and title, followed by a 
+  content area where routed components are displayed.
+
+  Features:
+  - Uses Angular Material Toolbar (`mat-toolbar`) for a consistent header.
+  - Displays a logo and application title.
+  - Includes a `router-outlet` to dynamically load different views.
+  - Implements a global styling section for layout consistency.
+
+  Dependencies:
+  - `MatToolbarModule` for the navigation bar.
+  - `router-outlet` for handling Angular routing.
+-->
+
+<!-- Global Styles -->
 <style>
   :host {
-    --primary-color: #1976d2;
-    --light-gray: #f0f0f0;
+    --primary-color: #1976d2;  /* Primary theme color */
+    --light-gray: #f0f0f0; /* Light gray background */
 
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     box-sizing: border-box;
@@ -10,6 +28,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Main content area */
   main {
     width: 100%;
     min-height: 100vh;
@@ -20,6 +39,7 @@
     background: var(--light-gray);
   }
 
+  /* Header section */
   .header {
     text-align: center;
     margin-bottom: 2rem;
@@ -37,14 +57,14 @@
   }
 </style>
 
-<!-- src/app/app.component.html -->
+<!-- Angular Material Toolbar -->
 <mat-toolbar class="main-toolbar">
   <!-- Logo on the left -->
   <img src="assets/logo.png" alt="Logo" class="logo" />
   <span class="toolbar-title">StaffPilot - Employee Management</span>
 </mat-toolbar>
 
+<!-- Content Container -->
 <div class="content-container">
-  <router-outlet></router-outlet>
+  <router-outlet></router-outlet> <!-- Dynamically loads routed components -->
 </div>
-

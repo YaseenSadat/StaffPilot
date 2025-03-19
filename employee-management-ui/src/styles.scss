@@ -1,4 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+/*
+  styles.scss 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  This is the global stylesheet for the Employee Management UI.
+  It defines foundational styles that apply to the entire application.
+
+  Features:
+  - Ensures full height for `html` and `body` elements.
+  - Removes default browser margins for a clean layout.
+  - Sets a consistent font family using Roboto and Helvetica Neue.
+  
+  Notes:
+  - Additional global styles or imports can be added as needed.
+  - This file is automatically included in the Angular build.
+
+  Dependencies:
+  - Uses Google Font "Roboto" for modern UI consistency.
+  - Falls back to "Helvetica Neue" and "sans-serif" for broad browser support.
+*/
+
+/* Ensures the entire page takes up the full height of the viewport */
+html, body {
+    height: 100%;
+  }
+  
+  /* Removes default margins and applies a global font */
+  body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+  

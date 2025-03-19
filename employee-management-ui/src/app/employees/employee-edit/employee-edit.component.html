@@ -1,30 +1,71 @@
-<!-- src/app/employees/employee-edit/employee-edit.component.html -->
+<!--
+  employee-edit.component.html
+
+  This template represents the UI for editing an employee's details in a modal dialog.
+  It provides input fields for modifying the employee's name, role, department, and salary.
+  The dialog features form validation and action buttons for saving or canceling changes.
+
+  Features:
+  - Uses Angular Material Dialog (`mat-dialog`) for a structured modal interface.
+  - Implements a form (`editForm`) for data binding and validation.
+  - Utilizes Angular Material input fields (`mat-form-field`) for an enhanced UI experience.
+  - Includes two action buttons:
+      - "Cancel" to close the dialog without saving.
+      - "Save" to submit changes, enabled only if the form is valid.
+
+  Dependencies:
+  - Angular Material components: `mat-dialog-title`, `mat-dialog-content`, `mat-form-field`, `mat-button`, `mat-raised-button`.
+  - Angular Forms Module (`ngModel`) for two-way data binding.
+
+  Expected Data:
+  - `employee`: An object bound to the form fields, containing properties:
+      - `name` (string): Employee’s name.
+      - `role` (string): Employee’s job role.
+      - `department` (string): Department name.
+      - `salary` (number): Employee's salary.
+
+-->
+
+<!-- Dialog title -->
 <h2 mat-dialog-title>Edit Employee</h2>
+
+<!-- Dialog content containing the employee edit form -->
 <mat-dialog-content>
   <form #editForm="ngForm">
+    
+    <!-- Name Input Field -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Name</mat-label>
       <input matInput required [(ngModel)]="employee.name" name="name" />
     </mat-form-field>
 
+    <!-- Role Input Field -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Role</mat-label>
       <input matInput required [(ngModel)]="employee.role" name="role" />
     </mat-form-field>
 
+    <!-- Department Input Field -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Department</mat-label>
       <input matInput required [(ngModel)]="employee.department" name="department" />
     </mat-form-field>
 
+    <!-- Salary Input Field (Numeric) -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Salary</mat-label>
       <input matInput type="number" required [(ngModel)]="employee.salary" name="salary" />
     </mat-form-field>
+
   </form>
 </mat-dialog-content>
+
+<!-- Dialog action buttons -->
 <mat-dialog-actions align="end">
+  <!-- Cancel button to close the dialog -->
   <button mat-button (click)="onCancel()">Cancel</button>
+
+  <!-- Save button (disabled if form is invalid) -->
   <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!editForm.form.valid">
     Save
   </button>

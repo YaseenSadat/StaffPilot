@@ -1,16 +1,55 @@
+<!--
+  index.html
+
+  This is the main entry point for the Employee Management UI web application.
+  It sets up the document structure, metadata, and links to necessary resources.
+
+  Features:
+  - Defines the document character set and viewport settings for responsiveness.
+  - Sets up the base URL for Angular routing.
+  - Includes links to Google Fonts and Material Icons for styling.
+  - Loads the Angular root component (`<app-root>`) as the main content area.
+
+  Dependencies:
+  - Google Fonts (`Roboto` and `Montserrat`) for typography.
+  - Material Icons for UI elements.
+  - Angular framework, which dynamically populates the `<app-root>` component.
+
+  Notes:
+  - The `<base href="/">` ensures proper routing in Angular applications.
+  - The `<app-root>` tag is where Angular will render the application.
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- Defines the character encoding for the document -->
   <meta charset="utf-8">
+  
+  <!-- Title of the application displayed in the browser tab -->
   <title>EmployeeManagementUi</title>
+  
+  <!-- Base URL for Angular routing -->
   <base href="/">
+  
+  <!-- Ensures responsive behavior across different devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Favicon for the application -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Google Fonts: Roboto (Material Design default font) -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <!-- Google Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <!-- Google Fonts: Montserrat (Used for headers and titles) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" />
 </head>
+
 <body class="mat-typography">
+  <!-- Angular Application Root Component -->
   <app-root></app-root>
 </body>
 </html>

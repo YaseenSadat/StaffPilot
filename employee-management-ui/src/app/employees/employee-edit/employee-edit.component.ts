@@ -1,3 +1,28 @@
+/**
+ * employee-edit.component.ts
+ * 
+ * This component provides an Angular Material dialog for editing employee details.
+ * Users can modify an employee’s name, role, department, and salary within a modal interface.
+ * 
+ * Features:
+ * - Uses Angular Material Dialog for a structured modal interface.
+ * - Implements two-way data binding with `ngModel` to allow seamless editing.
+ * - Ensures changes are applied only upon saving by using a copy of the original data.
+ * - Provides cancel and save functionality.
+ * 
+ * Dependencies:
+ * - Angular Material components: `MatDialogModule`, `MatFormFieldModule`, `MatInputModule`, `MatButtonModule`.
+ * - Angular Forms Module (`FormsModule`) for handling input fields.
+ * - CommonModule for Angular core functionalities.
+ * 
+ * Inputs:
+ * - `data` (Employee): The injected employee data from the parent component.
+ * 
+ * Outputs:
+ * - `onCancel()`: Closes the dialog without applying changes.
+ * - `onSave()`: Closes the dialog and returns the modified employee data.
+ */
+
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -22,24 +47,36 @@ import { Employee } from '../../services/employee.service';
   styleUrls: ['./employee-edit.component.scss']
 })
 export class EmployeeEditComponent {
-  // Create a property 'employee' to hold the data (a copy of the injected data)
+  /**
+   * Holds a copy of the employee data being edited.
+   * Prevents direct modification of the original data before saving.
+   */
   employee: Employee;
 
+  /**
+   * Injects dependencies and initializes a local copy of the employee data.
+   * 
+   * @param {MatDialogRef<EmployeeEditComponent>} dialogRef - Reference to the dialog instance.
+   * @param {Employee} data - The employee data passed from the parent component.
+   */
   constructor(
     public dialogRef: MatDialogRef<EmployeeEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Employee
   ) {
-    // Copy the incoming data so changes don't immediately affect the original.
-    this.employee = { ...data };
+    this.employee = { ...data }; // Creates a shallow copy to avoid modifying the original reference.
   }
 
+  /**
+   * Closes the dialog without saving changes.
+   */
   onCancel(): void {
-    // Close the dialog without saving changes.
     this.dialogRef.close(null);
   }
 
+  /**
+   * Closes the dialog and returns the modified employee data.
+   */
   onSave(): void {
-    // Close the dialog and return the updated employee object.
     this.dialogRef.close(this.employee);
   }
 }
